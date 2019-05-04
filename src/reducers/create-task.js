@@ -1,7 +1,7 @@
 import * as consts from '../constants/constants';
 
 const initialState = {
-  title: '',
+  title: 'Hello',
 };
 const CreateTask = (state = initialState, action) => {
   switch (action.type) {
