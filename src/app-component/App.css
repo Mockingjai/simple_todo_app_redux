@@ -1,0 +1,27 @@
+.app_wrapper {
+  display: flex;
+  justify-content: center;
+  border: 1px solid black;
+  margin: 0 auto;
+  padding: 15px 15px;
+}
+.app_wrapper-content {
+  border: 1px solid hotpink;
+}
+.title_wrapper {
+  border: 1px dashed darkgreen;
+  display: flex;
+  justify-content: center;
+  margin: 0 0 15px 0;
+}
+.title_wrapper h3 {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  font-size: 22px;
+  color: #195bff;
+}
+.title_wrapper h3 span {
+  color: palevioletred;
+}
+.todoInput_wrapper-App {
+  border: 1px dotted gold;
+}
