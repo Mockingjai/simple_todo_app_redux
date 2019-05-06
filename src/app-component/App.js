@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
-import * as func from '../actions-creator/add-task';
+import InputTodo from '../todo-input/todo-input';
+import TodoList from '../todo-list/todo-list';
 import './App.css';
 
 class App extends Component {
     render() {
-        console.log(this.props.CreateTask.title);
         return (
             <div className="app_wrapper">
                 <div className="app_wrapper-content">
@@ -13,13 +13,12 @@ class App extends Component {
                         <h3>Todo <span>A</span>pp with Redux</h3>
                     </div>
                     <div className="todoInput_wrapper-App">
+                        <InputTodo />
+                        <TodoList />
                     </div>
                 </div>
             </div>
         );
     }
 }
-const mapStateToProps = (state) => ({
-    CreateTask: state.CreateTask,
-});
-export default connect(mapStateToProps,null)(App);
+export default (App);
