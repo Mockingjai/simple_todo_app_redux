@@ -1,20 +1,32 @@
 import React, { Component } from 'react';
-import { deleteTodo } from '../actions/actions';
+import Modal from '../ModalWindow/EditWindow';
+import { deleteTodo} from '../actions/actions';
 import { connect } from 'react-redux';
 
 class TodoList extends Component {
+    state = {
+        isOpen: false,
+    };
+    toggleModal = () => this.setState({isOpen: !this.state.isOpen});
     render() {
-        const {tasks, removeTodo} = this.props;
+        const { tasks, removeTodo } = this.props;
         return (
             <>
                 <div>
                     {
                         tasks.map((item) => {
                             return (
-                                <li key={item.id}>
-                                    {item.title}
-                                    <button onClick={() => removeTodo(item.id)}>Delete</button>
-                                </li>
+                                <div>
+                                    <li key={item.id}>
+                                        {item.title}
+                                        <button onClick={() => removeTodo(item.id)}>Delete</button>
+                                        <button onClick={() => this.toggleModal()}>Edit</button>
+                                    </li>
+                                    <Modal
+                                        title={item.title}
+                                        isOpen={this.state.isOpen}
+                                    />
+                                </div>
                             )
                         })
                     }
