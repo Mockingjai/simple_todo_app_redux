@@ -1,18 +1,32 @@
 import React, { Component } from 'react';
-import TodoElement from '../todo-element/todo-element';
-import { connect } from "react-redux";
+import { deleteTodo } from '../actions/actions';
+import { connect } from 'react-redux';
 
 class TodoList extends Component {
     render() {
+        const {tasks, removeTodo} = this.props;
         return (
-            <div>
-                <TodoElement />
-            </div>
+            <>
+                <div>
+                    {
+                        tasks.map((item) => {
+                            return (
+                                <li key={item.id}>
+                                    {item.title}
+                                    <button onClick={() => removeTodo(item.id)}>Delete</button>
+                                </li>
+                            )
+                        })
+                    }
+                </div>
+            </>
         )
     }
 }
-const mapStateToProps = (state) => ({
-    title: state.CreateTask,
+const mapStateToProps = state => ({
+    tasks: state.todos
 });
-
-export default connect(mapStateToProps,null)(TodoList);
+const mapDispatchToProps = dispatch => ({
+    removeTodo: (id) => dispatch(deleteTodo(id)),
+});
+export default connect(mapStateToProps,mapDispatchToProps)(TodoList);

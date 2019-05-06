@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
-import { connect } from "react-redux";
-import InputTodo from '../todo-input/todo-input';
+import { connect } from 'react-redux';
+import TodoInput from '../todo-input/todo-input';
 import TodoList from '../todo-list/todo-list';
 import './App.css';
 
 class App extends Component {
     render() {
+        const {todos} = this.props;
         return (
             <div className="app_wrapper">
                 <div className="app_wrapper-content">
@@ -13,12 +14,19 @@ class App extends Component {
                         <h3>Todo <span>A</span>pp with Redux</h3>
                     </div>
                     <div className="todoInput_wrapper-App">
-                        <InputTodo />
-                        <TodoList />
+                        <TodoInput
+
+                        />
+                        <TodoList
+
+                        />
                     </div>
                 </div>
             </div>
         );
     }
 }
-export default (App);
+const mapStateToProps = state => ({
+  todos: state.todos
+});
+export default connect(null,null)(App);

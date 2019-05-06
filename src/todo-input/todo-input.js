@@ -1,33 +1,32 @@
 import React, { Component } from 'react';
-import { connect } from "react-redux";
-import AddTask from '../actions-creator/add-task';
+import { newTodo } from '../actions/actions';
+import { connect } from 'react-redux';
 
-class InputTodo extends Component {
+class TodoInput extends Component {
     constructor(props) {
         super(props);
-        this.state = {
-            title: ''
-        }
+        this.state = {value: ''};
     }
-    inputHandler = (e) => this.setState({title: e.target.value});
-    addTitle = (e) => {
+    onInput = e => this.setState({value: e.target.value});
+    newTodo = (e) => {
         e.preventDefault();
-        this.props.AddTask(this.state.title);
-        this.setState({title: ''});
+        this.props.addTodo(this.state.value);
+        this.setState({value: ''});
     };
     render() {
         return (
             <form>
-                <input placeholder='Add task' value={this.state.title} onChange={this.inputHandler}/>
-                <button onClick={this.addTitle}>Click</button>
+                <input
+                    placeholder='Enter...'
+                    value={this.state.value}
+                    onChange={this.onInput}
+                />
+                <button onClick={this.newTodo}>Add</button>
             </form>
         )
     }
 }
-const mapStateToProps = (state) => ({
-    title: state.CreateTask
+const mapDispatchToProps = dispatch => ({
+   addTodo: (title) => dispatch(newTodo(title)),
 });
-const mapDispatchToProps = (dispatch) => ({
-    AddTask: (title) => dispatch(AddTask(title))
-});
-export default connect(mapStateToProps,mapDispatchToProps)(InputTodo)
+export default connect(null,mapDispatchToProps)(TodoInput);
